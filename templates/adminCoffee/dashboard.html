@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="my-form container p-5 my-5 rounded border border-warning">
+    {% include "../include/messages.html" %}
+
+    <h3 class="text-center">
+        Admin Panel
+        
+    </h3>
+    <hr class="border border-warning" > 
+    <div class="row mt-4">
+        <div class="col-md-4 my-2">
+            <div class="text-center rounded border border-warning">
+                <p class='py-3'>
+                    <a class="dashlink" href="{% url "customer" %}" >Customer</a>
+                </p>
+                <hr class="border border-warning">
+                <p class="py-2">
+                    <a href="{% url "customer" %}" class="dashlink"> {{customer}} </a>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4 my-2">
+            <div class="text-center rounded border border-warning">
+                <p class='py-3'>
+                    <a class="dashlink" href="{% url "order" %}" >Order</a>
+                </p>
+                <hr class="border border-warning">
+                <p class="py-2 ">
+                    <a href="{% url "order" %}" class="dashlink"> {{orders}} </a>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4 my-2">
+            <div class="text-center rounded border border-warning">
+                <p class='py-3'>
+                    <a class="dashlink" href="{% url "addcoffee" %}" >Coffee</a>
+                </p>
+                <hr class="border border-warning">
+                <p class="py-2">
+                    <a href="{% url "addcoffee" %}" class="dashlink"> {{products}} </a>
+                </p>
+            </div>
+            
+        </div>
+    </div>
+
+</div>
+
+<div class="my-form container p-5 my-5 rounded border border-warning">
+    <div class="row">
+        <div class="col-md-6 col-12 my-2">
+            <h2 class="text-start bg-warning rounded py-2 pl-4">
+                Customer
+            </h2>
+            <hr class="bg-warning rounded border border-warning">
+            <table class="table table-hover">
+                <thead class="table-werning bg-warning rounded">
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Show</th>
+                </thead>
+                <tbody>
+                    {% for cust in dataCustomer %}
+                    <tr>
+                        <td> {{cust.id}} </td>
+                        <td> {{cust.username}} </td>
+                        <td>
+                            <a href="{% url "customeraction" userid=cust.id %}" class="btn btn-warning">Show</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6 col-12 my-2">
+            <h2 class="text-start bg-warning rounded py-2 pl-4">
+                Order
+            </h2>
+            <hr class="bg-warning rounded border  border-warning">
+            <table class="table table-hover">
+                <thead class="table-werning bg-warning rounded">
+                    <th>Order</th>
+                    <th>Show</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>coffee Break</td>
+                        <td>
+                            <a href="#" class="btn btn-warning">Show</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Nescaffee</td>
+                        <td>
+                            <a href="#" class="btn btn-warning">Show</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>coffee chocolate</td>
+                        <td>
+                            <a href="#" class="btn btn-warning">Show</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

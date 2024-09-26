@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="my-form container p-5 my-5 rounded border border-warning">
+    <h2 class="text-center">Carts</h2>
+    <hr>
+    <p class='text-center'>
+      All Price Order Is:  <span class="my-num" style='color:red; text-decoration:underline;'>{{priceOrders}}$</span>
+    </p>
+    <hr>
+    {% include "include/messages.html" %}
+    
+    <table class="table table-hover " style="margin-top:50px;">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Coffee name</th>
+            <th scope="col">Coffee Image</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price/Coffee</th>
+            <th scope="col">Total Price</th>
+            <th scope="col">Remove Coffee</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+            {% for cart in ContentCart %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td> {{cart.product.name}} </td>
+                    <td><img src="{{cart.product.photo.url}}" style="width: 50px; height:50px;" alt="{{cart.product.name}}"></td>
+                    <td> 
+                      <a href="{% url 'subQuantity' orderID=cart.id %}" id="sub" class="btn btn-outline-warning"> - </a>  
+                      {{cart.quantity}} 
+                      <a href="{% url 'sumQuantity' orderID=cart.id %}" id='increase' class="btn btn-outline-warning"> + </a>
+
+                    </td>
+                    <td> {{cart.product.price}}$ </td>
+                    <td style="color:red;"> {{cart.totalPrice}}$ </td>
+
+                    <td>
+                        <a href="{% url 'delOrder' cartID=cart.id  %}" class="btn btn-outline-danger">Remove</a>
+                    </td>
+                    
+                </tr>
+                
+            {% endfor %}
+          
+        </tbody>
+        
+      </table>
+      
+</div>
+{% endblock content %}

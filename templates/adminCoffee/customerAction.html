@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="my-form container p-5 my-5 rounded border border-warning">
+    <h3 class="text-center">
+        Admin Panel
+        
+    </h3>
+    <hr class="border border-warning" > 
+    <table class="table table-hover">
+        <thead class="table bg-warning">
+            <th>Username</th>
+            <th>Email</th>
+            <th>First_name</th>
+            <th>Last_name</th>
+            <th>Address</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{customer.userInfo.username}}</td>
+                <td>{{customer.userInfo.email}}</td>
+                <td>{{customer.userInfo.first_name}}</td>
+                <td>{{customer.userInfo.last_name}}</td>
+                <td> {{customer.address}}, {{customer.address2}}, {{customer.city}} </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-right">
+        <a href="{% url "dashboard" %}" class="btn btn-primary">Dashboard</a>
+    </div>
+</div>
+{% endblock content %}
